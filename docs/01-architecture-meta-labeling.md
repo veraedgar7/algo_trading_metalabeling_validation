@@ -3,23 +3,23 @@
 ## The general pattern
 
 ```
-┌─────────────────┐     ┌───────────────────────┐     ┌────────────────────┐
-│  Peregrine        │     │ Peregrine_collector    │     │   Raven (Python)   │
-│  (breakout rules:  │────▶│ (same EA, but logs     │────▶│  trains a binary   │
-│  BB breakout +     │     │  features + the real   │     │  classifier on     │
-│  H4 trend + ADX +  │     │  outcome of every      │     │  those events      │
-│  volume)           │     │  trade)                │     └──────────┬─────────┘
+┌─────────────────┐     ┌───────────────────────┐         ┌────────────────────┐
+│  Peregrine      │     │ Peregrine_collector   │         │   Raven (Python)   │
+│ (breakout rules:│ ─▶ │ (same EA, but logs    │ ───────▶│  trains a binary   │
+│  BB breakout +  │     │  features + the real  │         │  classifier on     │
+│  H4 trend+ADX+  │     │  outcome of every     │         │  those events      │
+│  volume)        │     │  trade)               │         └──────────┬─────────┘
 └─────────────────┘     └───────────────────────┘                    │
-                                                                       ▼
+                                                                     ▼
                                                              exports to ONNX
-                                                                       │
-                                                                       ▼
+                                                                     │
+                                                                     ▼
                                                         ┌──────────────────────┐
-                                                        │  Peregrine.mq5         │
-                                                        │  (production): runs    │
+                                                        │  Peregrine.mq5       │
+                                                        │  (production): runs  │
                                                         │  the rule + queries the │
-                                                        │  ONNX model before      │
-                                                        │  executing the trade    │
+                                                        │  ONNX model before   │
+                                                        │  executing the trade │
                                                         └──────────────────────┘
 ```
 
